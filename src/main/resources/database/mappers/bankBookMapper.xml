@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- 이건 xml이다 -->
+<!-- 스키마 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.google.s1.bankbook.BankBookDAO">
+	<select id="detail" parameterType="java.lang.Long" resultType="com.google.s1.bankbook.BankBookDTO">
+		select * from bankbook where booknumber=#{num}
+	</select>
+
+	<select id="list"
+		resultType="com.google.s1.bankbook.BankBookDTO">
+		<!-- 조건: SELECT한 결과물의 컬럼명과 DTO의 setter의 이름이 같아야함 -->
+		select * from BANKBOOK
+	</select>
+
+	<insert id="add" parameterType="com.google.s1.bankbook.BankBookDTO">
+		insert into bankbook(booknumber,bookname,bookcontents,bookrate,booksale)
+		VALUES(bankbook_seq.nextval,#{bookName},#{bookContents},#{bookRate},#{bookSale})
+		<!-- getter의 이름  -->
+	</insert>
+	
+	<delete id="delete" parameterType="com.google.s1.bankbook.BankBookDTO">
+		delete bankbook where booknumber=#{bookNumber}
+	</delete>
+</mapper>
