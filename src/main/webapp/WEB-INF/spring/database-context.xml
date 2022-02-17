@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<context:property-placeholder location="classpath:database/config/database.properties"/>
+
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="username" value="${oracle.username}"></property>
+		<property name="password" value="${oracle.password}"></property>
+		<property name="url" value="${oracle.url}"></property>
+		<property name="driverClassName" value="${oracle.driver}"></property>
+	</bean>
+
+<!-- database 연결하는 애가누구냐 ->dataSource객체다  -->
+<!--  Mapper.xml의 위치를 알려줌   -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations" value="classpath:database/mappers/*Mapper.xml"></property>
+	</bean>
+ 
+ <!--  최종적으로 자바랑 연결하는 부분은 여기  -->
+ <!--sqlSessionFactoryBean을 따라가면 dataSource와 mapper.xml의 경로를 알 수 있음  -->
+ 	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+ 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
+ 	</bean>
+</beans>
