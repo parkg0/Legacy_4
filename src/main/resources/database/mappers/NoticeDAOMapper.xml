@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- 이건 xml이다 -->
+<!-- 스키마 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.google.s1.notice.NoticeDAO">
+	<!-- list -->
+	<select id="list" resultType="com.google.s1.notice.NoticeDTO">
+		select * from notice
+	</select>
+
+	<!-- detail -->
+	<select id="detail"
+		parameterType="com.google.s1.notice.NoticeDTO"
+		resultType="com.google.s1.notice.NoticeDTO">
+		select * from notice where num=#{num}
+	</select>
+
+	<!-- add -->
+	<insert id="add" parameterType="com.google.s1.notice.NoticeDTO">
+		insert into notice
+		values(NOTICE_SEQ.nextval,#{title},#{contents},#{writer},sysdate,#{hit})
+	</insert>
+	
+	<!-- delete -->
+	<delete id="delete" parameterType="com.google.s1.notice.NoticeDTO">
+		delete notice where num=#{num}
+	</delete>
+</mapper>
