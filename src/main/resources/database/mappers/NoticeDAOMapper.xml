@@ -20,7 +20,7 @@
 	<!-- add -->
 	<insert id="add" parameterType="com.google.s1.notice.NoticeDTO">
 		insert into notice
-		values(NOTICE_SEQ.nextval,#{title},#{contents},#{writer},sysdate,#{hit})
+		values(NOTICE_SEQ.nextval,#{title},#{contents},#{writer},sysdate,0)
 	</insert>
 	
 	<!-- delete -->

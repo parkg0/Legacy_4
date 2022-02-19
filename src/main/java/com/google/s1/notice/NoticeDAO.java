@@ -22,7 +22,7 @@ public class NoticeDAO {
 		return sqlSession.selectOne(NAMESPACE+"detail",noticeDTO);
 	}
 	
-	//add -error 
+	//add 
 	public int add(NoticeDTO noticeDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"add",noticeDTO);
 	}

@@ -37,11 +37,10 @@ public void detailTest() throws Exception{
 public void addTest()throws Exception{
 	
 	NoticeDTO noticeDTO =new NoticeDTO();
-	noticeDTO.setContents("contents4");
-	noticeDTO.setHit(10);
+	noticeDTO.setContents("contents5");
 	noticeDTO.setRegDate(sysdate);
-	noticeDTO.setTitle("title4");
-	noticeDTO.setWriter("w4");
+	noticeDTO.setTitle("title5");
+	noticeDTO.setWriter("w5");
 	
 	int result = noticeDAO.add(noticeDTO);
 	assertEquals(1, result);
