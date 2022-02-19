@@ -34,6 +34,7 @@ public class BankBookController {
 	//detail
 	@RequestMapping(value = "detail",method =RequestMethod.GET )
 	public void detail(BankBookDTO bankBookDTO,Model model) throws Exception{
+		//bankBookDTO에 bookNumber 담겨있음 
 		bankBookDTO=bankBookService.detail(bankBookDTO);
 		model.addAttribute("dto",bankBookDTO);
 		
