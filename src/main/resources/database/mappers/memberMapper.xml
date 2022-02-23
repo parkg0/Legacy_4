@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- 이건 xml이다 -->
+<!-- 스키마 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.google.s1.member.MemberDAO">
+
+	<!-- mypage -->
+	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
+		select id,name,email,phone from member where id=#{id}
+	</select>
+
+	<insert id="join" parameterType="MemberDTO">
+		INSERT into member(id,pw,name,phone,email)
+		values (#{id},#{pw},#{name},#{phone},#{email}) 
+	</insert>
+	
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+		select id,name from member where id=#{id} and pw=#{pw}
+	</select>
+
+	
+
+</mapper>

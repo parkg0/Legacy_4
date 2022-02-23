@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.google.s1.MyJunitCase;
 
+@Repository
 public class BankBookDAOTest extends MyJunitCase{
 
 	@Autowired
