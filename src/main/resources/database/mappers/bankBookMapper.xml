@@ -5,6 +5,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.google.s1.bankbook.BankBookDAO">
+
+	<update id="update" parameterType="BankBookDTO">
+		update bankbook set
+		bookName=#{bookName},bookContents=#{bookContents},bookSale=#{bookSale},bookRate=#{bookRate}
+		where bookNumber=#{bookNumber}
+	</update>
+	
+
 	<select id="detail" parameterType="BankBookDTO" resultType="BankBookDTO">
 		select * from bankbook where booknumber=#{bookNumber}
 	</select>

@@ -15,6 +15,11 @@ public class BankBookDAO {
 	//어느 매퍼? 
 	//변경 금지하기위해 파이널 
 	
+	//update
+	public int update(BankBookDTO bankBookDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"update",bankBookDTO);
+	}
+	
 	//detail 
 	public BankBookDTO detail(BankBookDTO bankBookDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"detail",bankBookDTO);

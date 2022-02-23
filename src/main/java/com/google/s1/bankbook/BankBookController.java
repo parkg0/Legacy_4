@@ -16,7 +16,27 @@ public class BankBookController {
 
 	@Autowired
 	private BankBookService bankBookService;
+
+	//db에 update 처리
+	@RequestMapping(value = "update",method = RequestMethod.POST)
+	public String update(BankBookDTO bankBookDTO) throws Exception{
+		int result=bankBookService.update(bankBookDTO);
+		return "redirect:./list";
+	}
 	
+	
+	//update form 
+	@RequestMapping(value = "update",method = RequestMethod.GET)
+	public void update(BankBookDTO bankBookDTO, Model model)throws Exception{
+		System.out.println(bankBookDTO.getBookNumber());
+		
+		//위 bankbookDTO에 bookNumber담겨있음 
+		bankBookDTO=bankBookService.detail(bankBookDTO);
+		//위 bankbookDTO에 모든 정보 담겨 있음 
+		model.addAttribute("dto", bankBookDTO);
+	}
+	
+
 	
 	//DB에 insert
 	@RequestMapping(value = "add", method = RequestMethod.POST)
