@@ -13,6 +13,7 @@
 
 
 	<a href="./list">List</a>
+	<a href="./update">Update</a>
 	<a href="./delete?bookNumber=${dto.bookNumber}">Delete</a>
 	
 </body>

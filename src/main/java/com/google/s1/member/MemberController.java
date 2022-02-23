@@ -24,6 +24,7 @@ public class MemberController {
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public ModelAndView mypage(HttpSession session) throws Exception{
 		ModelAndView mv =new ModelAndView();
+		//object type 
 		MemberDTO memberDTO=(MemberDTO)session.getAttribute("member");
 		memberDTO=memberService.mypage(memberDTO);
 		mv.setViewName("member/mypage");
@@ -41,7 +42,7 @@ public class MemberController {
 	
 	
 	// parameter :id pw remember (parameter는 전부 String)
-	// select
+	//login 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(HttpSession session,MemberDTO memberDTO, String remember, Model model, HttpServletResponse response)
 			throws Exception {
@@ -50,23 +51,25 @@ public class MemberController {
 
 		if (remember !=null&&remember.equals("1")) {
 			// cookie 생성
-			Cookie cookie = new Cookie("remember", memberDTO.getId());
-			//cookie.setPath("/");
+			Cookie cookie = new Cookie("remember",memberDTO.getId());
 			cookie.setMaxAge(-1);
 			// 응답
 			response.addCookie(cookie);
-		}else {
+		}else { 
+			//쿠키 삭제 
 			Cookie cookie = new Cookie("remember", "");
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
 		memberDTO = memberService.login(memberDTO);
-
+		//로그인하고 정보 memberDTO에 담았어 
+		
 		String path = "redirect:./login";
-
 		
 		if (memberDTO != null) {
+			//로그인 했다면 
 			session.setAttribute("member", memberDTO);
+			//session에 "member"라는 이름으로 memberDTO 저장해 
 			path = "redirect:../";
 		}
 		return path;
