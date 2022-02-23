@@ -18,6 +18,11 @@ public class NoticeDAOTest extends MyJunitCase{
 	private NoticeDAO noticeDAO;
 	private Date sysdate;
 
+public void update() throws Exception{
+	NoticeDTO noticeDTO= new NoticeDTO();
+	
+}	
+	
 //list
 //@Test
 public void listTest() throws Exception {
@@ -33,7 +38,7 @@ public void detailTest() throws Exception{
 	assertNotNull(noticeDTO);
 }
 //add
-@Test
+//@Test
 public void addTest()throws Exception{
 	
 	NoticeDTO noticeDTO =new NoticeDTO();

@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <c:import url="../template/header_css.jsp"></c:import>
+<link rel="stylesheet" href="../resources/css/table.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>

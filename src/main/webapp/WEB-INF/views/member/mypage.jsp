@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="./update">수정</a>
 <h1>MyPage</h1>
 <h3>${dto.id}</h3>
 <h3>${dto.name}</h3>

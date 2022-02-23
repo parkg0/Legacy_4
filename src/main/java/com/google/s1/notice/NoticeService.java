@@ -11,6 +11,11 @@ public class NoticeService {
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
+	public int update(NoticeDTO noticeDTO) throws Exception{
+		return noticeDAO.update(noticeDTO);
+	}
+	
+	
 	public List<NoticeDTO> list() throws Exception {
 		List<NoticeDTO> ar=noticeDAO.list();
 	

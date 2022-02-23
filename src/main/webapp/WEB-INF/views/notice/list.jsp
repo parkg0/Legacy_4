@@ -7,11 +7,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
+<c:import url="../resources/css/table.css"></c:import>
+<style type="text/css">
+table{
+width: 900px;
+border: 1px solid black;
+border-collapse: collapse;
+margin: 0 auto;
+}
+
+th,td{
+border: 1px solid black;
+padding:8px;
+}
+
+
+}
+</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <h1>List Page</h1>
 <h4><a href="./add">글 작성</a></h4>
+
+
 <table>
 	<thead>	
 		<tr>

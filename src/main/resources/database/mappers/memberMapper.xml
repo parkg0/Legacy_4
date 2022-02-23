@@ -3,23 +3,32 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.google.s1.member.MemberDAO">
 
+	<!-- update -->
+	<update id="update" parameterType="MemberDTO">
+		update member set id=#{id},name=#{name},phone=#{phone},email=#{email}
+		where id=#{id}
+	</update>
 	<!-- mypage -->
-	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
+	<select id="mypage" parameterType="MemberDTO"
+		resultType="MemberDTO">
 		select id,name,email,phone from member where id=#{id}
 	</select>
 
 	<insert id="join" parameterType="MemberDTO">
-		INSERT into member(id,pw,name,phone,email)
-		values (#{id},#{pw},#{name},#{phone},#{email}) 
+		INSERT into
+		member(id,pw,name,phone,email)
+		values
+		(#{id},#{pw},#{name},#{phone},#{email})
 	</insert>
-	
-	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+
+	<select id="login" parameterType="MemberDTO"
+		resultType="MemberDTO">
 		select id,name from member where id=#{id} and pw=#{pw}
 	</select>
 
-	
+
 
 </mapper>

@@ -12,6 +12,10 @@ public class NoticeDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.google.s1.notice.NoticeDAO.";
 	
+	public int update(NoticeDTO noticeDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"update",noticeDTO);
+	}
+	
 	//list
 	public List<NoticeDTO> list() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"list");
