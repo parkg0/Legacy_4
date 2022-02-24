@@ -3,25 +3,18 @@ package com.google.s1.util;
 public class Pager {
 
 	// null이 넘어올 수 도 있으므로 reference type인 Long
-	// 페이지당보여줄 row 개수
 	// reference 기본값 = null
-	private Long perPage;
-
-	// page 번호
-	private Long page;
-
-	// 시작번호
-	private Long startRow;
-
-	// 끝번호
-	private Long lastRow;
+	private Long perPage;// 페이지당보여줄 row 개수
+	private Long page;// page 번호
+	private Long startRow;// 시작번호
+	private Long lastRow;// 끝번호
 
 	// ----------JSP에서 사용할 변수----------
 	private Long startNum;
 	private Long lastNum;
-	
-	private boolean pre;  //t - 이전 있음 f- 없음 
-	private boolean next; //t - 다음 있음 f- 없음 
+
+	private boolean pre; // t - 이전 있음 f- 없음
+	private boolean next; // t - 다음 있음 f- 없음
 
 	// 시작번호,끝번호 계산
 	public void makeRow() {
@@ -29,72 +22,70 @@ public class Pager {
 		this.lastRow = this.getPage() * this.getPerPage();
 	}
 
-	//이 메서드는 service에서 호출해 
+	// 이 메서드는 service에서 호출해
 	// page
 	public void makeNum(Long totalCount) {
 		// 1. 전체 row의 개수 (db에서 구해와야됨 )
-		
-		
+
 		// 2. 전체 page의 개수구하기 (this.perPage 아닌 이유 :null 방지)
 		Long totalPage = totalCount / this.getPerPage();
 		if (totalCount % this.getPerPage() != 0) {
 			totalPage++;
 			// 나머지가 있으면 1 증가 시킴
 		}
-		
-		//3. 블럭당 개수
-		Long perBlock=10L;
-		
-		//4. 전체 블럭의 개수 구하기 
-		Long totalBlock=totalPage/perBlock;
-		if(totalPage%perBlock !=0) {
+
+		// 3. 블럭당 페이지 개수 설정
+		Long perBlock = 10L;
+
+		// 4. 전체 블럭의 개수 구하기
+		Long totalBlock = totalPage / perBlock;
+		if (totalPage % perBlock != 0) {
 			totalBlock++;
 		}
-		
-		//5. page번호로 현재 몇번째 Block인지 계산 
+
+		// 5. page번호로 현재 몇번째 Block인지 계산
 		// 첫번째 : 1 - 10
 		// 두번째 : 11 -20
-		
-		// page    block
-		// 1        1
-		// 2        1 
-		// 9        1
-		// 10       1    
-		// 11       2
-		// 20       2
-		// 21       3
-		
-		Long curBlock = this.getPage()/perBlock;
-		if(this.getPage()%perBlock !=0) {
+
+		// page block
+		// 1 1
+		// 2 1
+		// 9 1
+		// 10 1
+		// 11 2
+		// 20 2
+		// 21 3
+
+		Long curBlock = this.getPage() / perBlock;
+		if (this.getPage() % perBlock != 0) {
 			curBlock++;
 		}
-		
-		//6. curBlock으로 startNum, lastNum 구하기 
-		// curBlock  startNum  lastNum
-		//   1         1         10
-		//   2         11        20
-		
-		this.startNum =(curBlock-1)*perBlock+1;
-		this.lastNum =curBlock*perBlock;
-		
-		//7.
-		
-		//8. 이전 또는 다음 블럭 유무 
-		this.pre=false;
-		if(curBlock>1) {
-			//현재 블럭이 1이 아니라면 pre 활성화 
-			this.pre=true;
+
+		// 6. curBlock으로 startNum, lastNum 구하기
+		// curBlock startNum lastNum
+		// 1 1 10
+		// 2 11 20
+
+		this.startNum = (curBlock - 1) * perBlock + 1;
+		this.lastNum = curBlock * perBlock;
+
+		// 7.
+
+		// 8. 이전 또는 다음 블럭 유무
+		this.pre = false;
+		if (curBlock > 1) {
+			// 현재 블럭이 1이 아니라면 pre 활성화
+			this.pre = true;
 		}
-		
-		this.next=false; 
-		if(totalBlock>curBlock) { //현재블록이 마지막 블록이 아니라면 next활성화 
-			this.next=true;
+
+		this.next = false;
+		if (totalBlock > curBlock) { // 현재블록이 마지막 블록이 아니라면 next활성화
+			this.next = true;
 		}
-		
-		
-		//9. 현재 블럭이 마지막 블럭번호랑 같다면 page 있는 번호만 보여주기 
-		if(curBlock == totalBlock){
-			this.lastNum=totalPage;
+
+		// 9. 현재 블럭이 마지막 블럭번호랑 같다면 page 있는 번호만 보여주기
+		if (curBlock == totalBlock) {
+			this.lastNum = totalPage;
 		}
 	}
 
@@ -168,7 +159,5 @@ public class Pager {
 	public void setNext(boolean next) {
 		this.next = next;
 	}
-	
-	
 
 }
