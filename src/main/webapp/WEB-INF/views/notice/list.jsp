@@ -7,34 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
-<c:import url="../resources/css/table.css"></c:import>
-<style type="text/css">
-table{
-width: 900px;
-border: 1px solid black;
-border-collapse: collapse;
-margin: 0 auto;
-}
-
-th,td{
-border: 1px solid black;
-padding:8px;
-}
-
-
-}
-</style>
+<link rel="stylesheet" href="../resources/css/table.css">
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <h1>List Page</h1>
-<h4><a href="./add">글 작성</a></h4>
+
 
 
 <table>
 	<thead>	
 		<tr>
-			<td>글번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td>
+			<th>글번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
 		</tr>
 	</thead>
 	<c:forEach items="${list}" var="notice">
@@ -49,7 +33,7 @@ padding:8px;
 	</tbody>
 </c:forEach>
 </table>
-
+<a href="./add">글 작성</a>
 
 </body>
 </html>

@@ -21,8 +21,10 @@ public class MemberController {
 	private MemberService memberService;
 
 	@RequestMapping(value="update",method = RequestMethod.POST)
-	public void update(MemberDTO memberDTO)throws Exception{
+	public String update(MemberDTO memberDTO)throws Exception{
 		memberService.update(memberDTO);
+		
+		return"redirect:./mypage";
 	}
 	
 	@RequestMapping(value = "update", method =RequestMethod.GET)
@@ -88,6 +90,7 @@ public class MemberController {
 		if (memberDTO != null) {
 			//로그인 했다면 
 			session.setAttribute("member", memberDTO);
+			session.setMaxInactiveInterval(60*60);
 			//session에 "member"라는 이름으로 memberDTO 저장해 
 			path = "redirect:../";
 		}

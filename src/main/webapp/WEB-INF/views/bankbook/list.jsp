@@ -30,6 +30,6 @@
 		</c:forEach>
 	</table>
 	
-	<a href="./add">ADD</a>
+	<a href="./add" >상품 추가하기</a>
 </body>
 </html>
