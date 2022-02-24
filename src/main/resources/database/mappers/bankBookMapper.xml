@@ -11,24 +11,36 @@
 		bookName=#{bookName},bookContents=#{bookContents},bookSale=#{bookSale},bookRate=#{bookRate}
 		where bookNumber=#{bookNumber}
 	</update>
-	
 
-	<select id="detail" parameterType="BankBookDTO" resultType="BankBookDTO">
+
+	<select id="detail" parameterType="BankBookDTO"
+		resultType="BankBookDTO">
 		select * from bankbook where booknumber=#{bookNumber}
 	</select>
+	
+	<select id="total" resultType="Long">
+		select count(booknumber) from bankbook
+	</select>
 
-	<select id="list" resultType="BankBookDTO">
+	<select id="list" parameterType="Pager" resultType="BankBookDTO">
 		<!-- 조건: SELECT한 결과물의 컬럼명과 DTO의 setter의 이름이 같아야함 -->
-		select * from BANKBOOK
+		select * from
+		(select rownum R, B.* from
+		(select * from bankbook where booknumber>0 order by booknumber desc) B )
+		where R between #{startRow} and #{lastRow}
+		
+
 	</select>
 
 	<insert id="add" parameterType="BankBookDTO">
-		insert into bankbook(booknumber,bookname,bookcontents,bookrate,booksale)
+		insert into
+		bankbook(booknumber,bookname,bookcontents,bookrate,booksale)
 		VALUES(bankbook_seq.nextval,#{bookName},#{bookContents},#{bookRate},#{bookSale})
-		<!-- getter의 이름  -->
+		<!-- getter의 이름 -->
 	</insert>
-	
+
 	<delete id="delete" parameterType="BankBookDTO">
-		delete bankbook where booknumber=#{bookNumber}
+		delete bankbook where
+		booknumber=#{bookNumber}
 	</delete>
 </mapper>

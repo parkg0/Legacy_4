@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.google.s1.util.Pager;
+
 @Repository
 public class BankBookDAO {
 
@@ -14,6 +16,8 @@ public class BankBookDAO {
 	private final String NAMESPACE="com.google.s1.bankbook.BankBookDAO.";
 	//어느 매퍼? 
 	//변경 금지하기위해 파이널 
+	
+	
 	
 	//update
 	public int update(BankBookDTO bankBookDTO)throws Exception{
@@ -24,13 +28,18 @@ public class BankBookDAO {
 	public BankBookDTO detail(BankBookDTO bankBookDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"detail",bankBookDTO);
 	}
+	
+	//total
+	public Long total()throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"total");
+	}
 
 	//list
-	public List<BankBookDTO> list() throws Exception{
+	public List<BankBookDTO> list(Pager pager) throws Exception{
 		//List<BankBookDTO> 이건 풀패키지명 안쓰는 이유: 같은 패키지 내에 
 		//String naem="";  이거 import 안해 왜? 같은 패키지 내에 있는 객체를 사용할때는 임포트 안해 
 		//그리고java.lang 패키지 안에 있는 개체를 사용할때는 임포트 안해 
-		return sqlSession.selectList(NAMESPACE+"list");
+		return sqlSession.selectList(NAMESPACE+"list",pager);
 		//어느 매퍼? + id 
 	}
 	
