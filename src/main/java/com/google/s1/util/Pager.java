@@ -15,6 +15,11 @@ public class Pager {
 
 	private boolean pre; // t - 이전 있음 f- 없음
 	private boolean next; // t - 다음 있음 f- 없음
+	
+	//----------검색에서 사용할 변수 ----
+	//list.jsp에서 받아옴 
+	private String search;
+	private String kind;
 
 	// 시작번호,끝번호 계산
 	public void makeRow() {
@@ -160,4 +165,27 @@ public class Pager {
 		this.next = next;
 	}
 
+	public String getSearch() {
+		//검색어가 없으면 search==null
+		if(this.search==null) {
+			this.search="";
+		}
+//방법2 .
+//		this.search="%"+this.search+"%";	
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	
 }

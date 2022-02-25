@@ -18,17 +18,49 @@
 		select * from bankbook where booknumber=#{bookNumber}
 	</select>
 	
-	<select id="total" resultType="Long">
+	<select id="total" resultType="Long" parameterType="Pager">
 		select count(booknumber) from bankbook
+		where 
+			booknumber>0 
+        	and 
+	        	<choose>
+	        		<when test="kind=='col1'">
+	        			bookname
+	        		</when>
+	        		<otherwise>
+	        			bookcontents
+	        		</otherwise>
+	        	</choose>
+       	
+        	like '%' || #{search} || '%' 
 	</select>
+
 
 	<select id="list" parameterType="Pager" resultType="BankBookDTO">
 		<!-- 조건: SELECT한 결과물의 컬럼명과 DTO의 setter의 이름이 같아야함 -->
 		select * from
-		(select rownum R, B.* from
-		(select * from bankbook where booknumber>0 order by booknumber desc) B )
-		where R between #{startRow} and #{lastRow}
-		
+   		(select rownum R, B.* from 
+        (select * from bankbook where 
+        	booknumber>0 
+        	and 
+        	
+        	<choose>
+        		<when test="kind=='col1'">
+        			bookname
+        		</when>
+        		<otherwise>
+        			bookcontents
+        		</otherwise>
+        	</choose>
+        	
+        	like '%' || #{search} || '%' 
+            order by booknumber desc
+            ) B 
+        )
+		where r between #{startRow} and #{lastRow}
+
+
+
 
 	</select>
 

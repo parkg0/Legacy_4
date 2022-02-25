@@ -1,6 +1,17 @@
 @charset "UTF-8";
+ .table-basic{
+	 width: 100%;
+	 border-collapse: collapse;
+ }
+.table-basic td, .table-basic th{
+border: 1px solid #00000c;
+border-spacing: 0;
+height: 35px;
 
-
-h1 {
-	color: red;
+}
+ 
+.table-basic tr:first-child{
+	background-color: #363636;
+	height: 45px;
+	color: #ffffff;
 }
