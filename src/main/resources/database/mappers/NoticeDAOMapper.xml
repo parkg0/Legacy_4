@@ -6,9 +6,18 @@
 
 <mapper namespace="com.google.s1.notice.NoticeDAO">
 	<!-- list -->
-	<select id="list" resultType="com.google.s1.notice.NoticeDTO">
-		select * from notice
+	<select id="list" parameterType="Pager" resultType="com.google.s1.notice.NoticeDTO">
+		select * from(
+		select rownum R, N.* from
+		(select * from notice where num>0 order by num desc) N)
+		where R between #{startRow} and #{lastRow}
 	</select>
+
+<!-- total -->
+	<select id="total" resultType="Long">
+	select count(num) from notice
+	</select>
+
 
 	<!-- detail -->
 	<select id="detail"
@@ -22,9 +31,10 @@
 		insert into notice
 		values(NOTICE_SEQ.nextval,#{title},#{contents},#{writer},sysdate,0)
 	</insert>
-	
+
 	<!-- delete -->
-	<delete id="delete" parameterType="com.google.s1.notice.NoticeDTO">
+	<delete id="delete"
+		parameterType="com.google.s1.notice.NoticeDTO">
 		delete notice where num=#{num}
 	</delete>
 </mapper>

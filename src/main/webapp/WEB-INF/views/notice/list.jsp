@@ -10,7 +10,7 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<h1>List Page</h1>
+<h1>Notice List Page</h1>
 <h4><a href="./add">글 작성</a></h4>
 <table>
 	<thead>	

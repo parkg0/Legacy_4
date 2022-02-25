@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.google.s1.MyJunitCase;
 import com.google.s1.notice.NoticeDAO;
 import com.google.s1.notice.NoticeDTO;
+import com.google.s1.util.Pager;
 
 public class NoticeDAOTest extends MyJunitCase{
 
@@ -19,9 +20,13 @@ public class NoticeDAOTest extends MyJunitCase{
 	private Date sysdate;
 
 //list
-//@Test
+@Test
 public void listTest() throws Exception {
-	List<NoticeDTO> ar=noticeDAO.list();
+	Pager pager= new Pager();
+	pager.setPage(1L);
+	pager.makeRow();
+	pager.makeNum(200L);
+	List<NoticeDTO> ar=noticeDAO.list(pager);
 	assertNotEquals(0, ar.size());
 }
 //detail
@@ -33,17 +38,19 @@ public void detailTest() throws Exception{
 	assertNotNull(noticeDTO);
 }
 //add
-@Test
+//@Test
 public void addTest()throws Exception{
 	
+	for(int i=0;i<200;i++) {
 	NoticeDTO noticeDTO =new NoticeDTO();
-	noticeDTO.setContents("contents5");
+	noticeDTO.setContents("contents"+i);
 	noticeDTO.setRegDate(sysdate);
-	noticeDTO.setTitle("title5");
-	noticeDTO.setWriter("w5");
+	noticeDTO.setTitle("title"+i);
+	noticeDTO.setWriter("writer"+i);
 	
 	int result = noticeDAO.add(noticeDTO);
-	assertEquals(1, result);
+	}
+	System.out.println("finish");
 }
 //delete
 //@Test
