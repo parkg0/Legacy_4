@@ -69,9 +69,9 @@ public class Pager {
 		this.startNum = (curBlock - 1) * perBlock + 1;
 		this.lastNum = curBlock * perBlock;
 
-		// 7.
+	
 
-		// 8. 이전 또는 다음 블럭 유무
+		// 7. 이전 또는 다음 블럭 유무
 		this.pre = false;
 		if (curBlock > 1) {
 			// 현재 블럭이 1이 아니라면 pre 활성화
@@ -83,7 +83,7 @@ public class Pager {
 			this.next = true;
 		}
 
-		// 9. 현재 블럭이 마지막 블럭번호랑 같다면 page 있는 번호만 보여주기
+		// 8. 현재 블럭이 마지막 블럭번호랑 같다면 page 있는 번호만 보여주기
 		if (curBlock == totalBlock) {
 			this.lastNum = totalPage;
 		}
