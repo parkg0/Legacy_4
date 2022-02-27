@@ -72,7 +72,9 @@ public class BankBookController {
 		//메서드 내에서 객체 생성하는 방법 
 		//ModelAndView modelAndView = new ModelAndView();
 		
-		//검색시 kind,search 파라미터 너어와 
+		//검색시 kind,search 파라미터 넘어와
+		//kind는 선택한것 search는 입력한 값 
+		
 		List<BankBookDTO> ar =bankBookService.list(pager); 
 		mv.addObject("list",ar);
 		mv.addObject("pager", pager); //startnum=1 lastnum=208 jsp로 보내 
