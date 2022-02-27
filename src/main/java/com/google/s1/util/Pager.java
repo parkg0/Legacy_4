@@ -10,6 +10,8 @@ public class Pager {
 	private Long lastNum;
 	private boolean pre;
 	private boolean next;
+	private String kind; //col1 col2 
+	private String search;
 	
 	public void makeRow() {
 	this.startRow=(this.getPage()-1)*this.getPerPage()+1;
@@ -20,7 +22,7 @@ public class Pager {
 		Long totalPage= totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage() !=0) {
 			totalPage++;
-			
+		}
 		Long perBlock=10L;
 		
 		Long totalBlock=totalPage/perBlock;
@@ -31,14 +33,28 @@ public class Pager {
 		Long curBlock=this.getPage()/perBlock;
 		if(this.getPage()%perBlock != 0) {
 			curBlock++;
+			
 		}
 		this.startNum=(curBlock-1)*perBlock+1;
 		this.lastNum=curBlock*perBlock;
-		
+		this.pre = false;
+		if (curBlock > 1) {
+			this.pre = true;
+		}
+
+		this.next = false;
+		if (totalBlock > curBlock) {
+			this.next = true;
+		}
+
+		if (curBlock == totalBlock) {
+			this.lastNum = totalPage;
+		}
+
 		}
 		
 		
-	}
+	
 	
 	
 	
@@ -96,6 +112,26 @@ public class Pager {
 	}
 	public void setNext(boolean next) {
 		this.next = next;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		
+		if(this.search==null) {
+			this.search="";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 	
 	

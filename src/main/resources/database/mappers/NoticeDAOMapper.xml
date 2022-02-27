@@ -6,16 +6,51 @@
 
 <mapper namespace="com.google.s1.notice.NoticeDAO">
 	<!-- list -->
-	<select id="list" parameterType="Pager" resultType="com.google.s1.notice.NoticeDTO">
+	<select id="list" parameterType="Pager"
+		resultType="com.google.s1.notice.NoticeDTO">
 		select * from(
 		select rownum R, N.* from
-		(select * from notice where num>0 order by num desc) N)
-		where R between #{startRow} and #{lastRow}
+		(select * from notice where
+		num>0
+		and
+
+		<choose>
+			<when test="kind=='col1'">
+				title
+			</when>
+			<when test="kind=='col2'">
+				writer
+			</when>
+			<otherwise>
+				contents
+			</otherwise>
+		</choose>
+
+		like '%' || #{search} || '%'
+		order by num desc) N)
+		where R between
+		#{startRow} and #{lastRow}
 	</select>
 
-<!-- total -->
-	<select id="total" resultType="Long">
-	select count(num) from notice
+	<!-- total -->
+	<select id="total" resultType="Long" parameterType="Pager">
+		select count(num) from notice where
+		num>0
+		and
+
+		<choose>
+			<when test="kind=='col1'">
+				title
+			</when>
+			<when test="kind=='col2'">
+				writer
+			</when>
+			<otherwise>
+				contents
+			</otherwise>
+		</choose>
+
+		like '%' || #{search} || '%'
 	</select>
 
 
