@@ -8,11 +8,13 @@
 </head>
 <body>
 <h1>ADD page</h1>
-	<form action="./add" method="post">
-		작성자 <input type="text" name="writer">	
-		제목 <input type="text" name="title">
+	<form action="./add" method="post" id="frm">
+		작성자 <input type="text" name="writer" id="writer">	
+		제목 <input type="text" name="title" id="title">
 		내용 <textarea rows="" cols="" type="text" name="contents"></textarea>
-		<input type="submit" value="저장">
+		<input type="button" value="저장" id="btn">
 	</form>
+
+	<script src="../resources/js/noticeAdd.js"></script>
 </body>
 </html>
