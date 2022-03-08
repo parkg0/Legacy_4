@@ -12,9 +12,9 @@
 		작성자 <input type="text" name="writer">	
 		제목 <input type="text" name="title">
 		내용 <textarea rows="" cols="" type="text" name="contents"></textarea>
-		<input type="button" value="저장" id="btn">
+		<input type="submit" value="저장" id="btn">
 	</form>
 
 	<script src="../resources/js/noticeAdd.js"></script>
 </body>
-</html>
+</html> 
