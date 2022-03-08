@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>${board} detail page</h1>
 
+<a href="./update">수정</a>
+<a href="./delete?num=${dto.num}">삭제</a>
+<a href="./update?num=${dto.num}">update</a>
+<a href="./reply?num=${dto.num}">Reply</a>
 
 <table>
 	<thead>
@@ -17,12 +23,12 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>${noticeDTO.num}</td>
-			<td>${noticeDTO.title}</td>
-			<td>${noticeDTO.contents}</td>
-			<td>${noticeDTO.writer}</td>
-			<td>${noticeDTO.regDate}</td>
-			<td>${noticeDTO.hit}</td>
+			<td>${dto.num}</td>
+			<td>${dto.title}</td>
+			<td>${dto.contents}</td>
+			<td>${dto.writer}</td>
+			<td>${dto.regDate}</td>
+			<td>${dto.hit}</td>
 			
 		</tr>
 	</tbody>

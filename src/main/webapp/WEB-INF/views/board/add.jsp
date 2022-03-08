@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ADD page</h1>
+<h1>${board} ADD page</h1>
 	<form action="./add" method="post">
 		작성자 <input type="text" name="writer">	
 		제목 <input type="text" name="title">

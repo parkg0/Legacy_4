@@ -8,11 +8,10 @@
 			<!-- <a>메서드 형식 : GET -->
 			<li><a href="/s1">HOME</a></li>
 			<li><a href="/s1/notice/list">Notice</a></li>
-			<li><a href="/s1/qua/list">QnA</a></li>
+			<li><a href="/s1/qna/list">QnA</a></li>
 			<li><a href="/s1/bankbook/list">Product</a></li>
 		</ul>
 	</nav>
-
 
 	<nav class="nav_sub">
 		<ul>

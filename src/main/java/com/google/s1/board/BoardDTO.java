@@ -1,9 +1,9 @@
-package com.google.s1.notice;
+package com.google.s1.board;
 
 import java.sql.Date;
 
-public class NoticeDTO {
-
+public class BoardDTO {
+	
 	private Integer num;
 	private String title;
 	private String contents;
@@ -49,5 +49,5 @@ public class NoticeDTO {
 	}
 	
 	
-	
+
 }

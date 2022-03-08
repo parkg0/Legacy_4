@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.s1.MyJunitCase;
-import com.google.s1.notice.NoticeDAO;
-import com.google.s1.notice.NoticeDTO;
+import com.google.s1.board.notice.NoticeDAO;
+import com.google.s1.board.notice.NoticeDTO;
 
 public class NoticeDAOTest extends MyJunitCase{
 
