@@ -8,7 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="./template/header_css.jsp"></c:import>
-	
+<style type="text/css">
+.jjang{
+width:30%;
+margin :0 auto;
+}
+</style>
 </script>
 </head>
 <body>
@@ -18,7 +23,9 @@
 	<h3>${member.name}님
 		환영합니다. <span class="material-icons-outlined"> account_circle </span>
 	</h3>
-
+<div class="jjang">
+<img alt="" src="./resources/images/cutejjang.jpg">
+</div>
 	<div>
 		<c:if test="${not empty member}">
 			<a href="./member/mypage">MyPage</a>
@@ -29,6 +36,6 @@
 			<a href="./member/join">Join</a>
 		</c:if>
 	</div>
-
+<img alt="" src="./resources/upload/member/e4bbb0ac-87d2-42e4-9050-3afcf2396a07_cutejjang.jpg">
 </body>
 </html>

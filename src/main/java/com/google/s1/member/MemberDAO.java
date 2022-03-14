@@ -12,6 +12,10 @@ public class MemberDAO {
 	
 	private final String NAMESPACE="com.google.s1.member.MemberDAO.";
 	
+	public int addFile(MemberFileDTO memberFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addFile",memberFileDTO);
+	}
+	
 	public MemberDTO mypage(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"mypage",memberDTO);
 	}

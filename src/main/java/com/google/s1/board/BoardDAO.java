@@ -6,6 +6,9 @@ import com.google.s1.util.Pager;
 
 public interface BoardDAO {
 	
+	//addFile
+	public int addFile(BoardFileDTO boardFileDTO)throws Exception;
+	
 	//detail
 	public BoardDTO detail(BoardDTO boardDTO)throws Exception;
 	

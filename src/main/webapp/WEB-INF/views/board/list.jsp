@@ -44,7 +44,6 @@
 			<c:catch var="message">
 			<c:forEach begin="1" end="${dto.depth}">&nbsp;</c:forEach> 
 			</c:catch>
-			<%-- <p>${message}</p> --%>
 			${dto.title}</a></td>
 		
 			<td>${dto.writer}</td>

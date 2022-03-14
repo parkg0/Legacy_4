@@ -13,7 +13,8 @@
 		작성자 <input type="text" name="writer">	
 		제목 <input type="text" name="title">
 		내용 <textarea rows="" cols="" type="text" name="contents"></textarea>
-		<input type="submit" value="저장">
+		<button type="submit">reply</button>
+		
 	</form>
 </body>
 </html>

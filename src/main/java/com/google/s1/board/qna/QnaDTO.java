@@ -1,5 +1,7 @@
 package com.google.s1.board.qna;
 
+import java.util.List;
+
 import com.google.s1.board.BoardDTO;
 
 public class QnaDTO extends BoardDTO{
@@ -9,6 +11,15 @@ public class QnaDTO extends BoardDTO{
 	private Integer step;
 	private Integer depth;
 	
+	private List<QnaFileDTO> fileDTOs;
+	
+	
+	public List<QnaFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<QnaFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 	public Integer getRef() {
 		return ref;
 	}

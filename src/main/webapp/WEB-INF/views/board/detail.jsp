@@ -16,8 +16,13 @@
 <!-- qna에만 보이도록  -->
 <c:if test="${board ne 'notice'}">
 <a href="./reply?num=${dto.num}">Reply</a>
+<!--parameter : 부모에 대한 정보  -->
 </c:if>
-
+<div>
+	<c:forEach items="${dto.fileDTOs}" var="f">
+		<a href="../resources/upload/${board}/${f.fileName}">${f.oriName}</a>
+	</c:forEach> 
+</div>
 <table>
 	<thead>
 		<tr>
@@ -32,6 +37,7 @@
 			<td>${dto.writer}</td>
 			<td>${dto.regDate}</td>
 			<td>${dto.hit}</td>
+			
 			
 		</tr>
 	</tbody>
