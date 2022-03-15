@@ -27,6 +27,11 @@ public class QnaDAO implements BoardDAO{
 		return sqlSession.update(NAMESPACE+"stepUpdate",qnaDTO);
 	}
 	
+	@Override
+	public BoardFileDTO detailFile(BoardFileDTO boardfileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"detailFile",boardfileDTO);
+	}
 	
 	//addfile
 	@Override
@@ -70,6 +75,7 @@ public class QnaDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"total",pager);
 	}
+
 
 	
 	

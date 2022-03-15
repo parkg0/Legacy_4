@@ -14,6 +14,10 @@ public class MemberService {
 	@Autowired
 	private FileManager fileManager;
 	
+	//
+	public MemberFileDTO detailFile(MemberFileDTO memberFileDTO)throws Exception{
+		return memberDAO.detailFile(memberFileDTO);
+	}
 	//mypage
 	public MemberDTO mypage(MemberDTO memberDTO)throws Exception{
 		return memberDAO.mypage(memberDTO);

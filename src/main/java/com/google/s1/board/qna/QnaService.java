@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.s1.board.BoardDTO;
+import com.google.s1.board.BoardFileDTO;
 import com.google.s1.board.BoardService;
 import com.google.s1.util.FileManager;
 import com.google.s1.util.Pager;
@@ -19,6 +20,11 @@ public class QnaService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 	
+	@Override
+	public BoardFileDTO detailFile(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.detailFile(boardFileDTO);
+	}
 	//reply
 	public int reply(QnaDTO qnaDTO) throws Exception{
 		//qnaDTO.num      :부모글의 글번호 
@@ -102,5 +108,6 @@ public class QnaService implements BoardService {
 		// TODO Auto-generated method stub
 		return qnaDAO.delete(boardDTO);
 	}
+
 
 }

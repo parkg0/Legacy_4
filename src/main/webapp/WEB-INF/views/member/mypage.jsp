@@ -13,6 +13,7 @@
 <h3>${dto.phone}</h3>
 <h3>${dto.email}</h3>
 <img alt="" src="../resources/upload/member/${dto.memberFileDTO.fileName}">
-<h3>${dto.memberFileDTO.oriName}</h3>
+	<a href="./photoDown?fileNum=${dto.memberFileDTO.fileNum}">${dto.memberFileDTO.oriName}</a>
+	<h3>${dto.memberFileDTO.oriName}</h3>
 </body>
 </html>

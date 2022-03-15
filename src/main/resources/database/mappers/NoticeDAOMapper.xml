@@ -5,6 +5,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.google.s1.board.notice.NoticeDAO">
+
+	<select id="listFile" parameterType="BoardDTO" resultType="NoticeFileDTO">
+	select * from noticefile
+	where num =#{num}
+	</select>
+
+	<select id="detailFile" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
+		select * from noticefile 
+		where filenum=#{fileNum}
+	</select>
 	
 	<insert id="addFile" parameterType="BoardFileDTO">
 	

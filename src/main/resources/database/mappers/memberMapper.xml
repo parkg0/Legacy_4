@@ -6,10 +6,17 @@
     
 <mapper namespace="com.google.s1.member.MemberDAO">
 
-<insert id="addFile" parameterType="MemberFileDTO">
-	insert into memberfile (filenum,id,filename,oriname)
-	values (file_seq.nextval,#{id},#{fileName},#{oriName})
-</insert>
+	<!-- filedownload시 client가 저장한 이름으로 file다운로드 하기위해 -->
+	<!-- filenum으로 filename 가져오는 쿼리  -->
+	<select id="detailFile" parameterType="MemberFileDTO" resultType="MemberFileDTO">
+		select * from memberfile 
+		where filenum=#{fileNum}
+	</select>
+	
+	<insert id="addFile" parameterType="MemberFileDTO">
+		insert into memberfile (filenum,id,filename,oriname)
+		values (file_seq.nextval,#{id},#{fileName},#{oriName})
+	</insert>
 
 	
 	<!-- mypage -->

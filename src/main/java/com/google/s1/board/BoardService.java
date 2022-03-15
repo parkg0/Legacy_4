@@ -7,6 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.s1.util.Pager;
 
 public interface BoardService {
+	
+	//
+		public BoardFileDTO detailFile(BoardFileDTO boardFileDTO)throws Exception;
 
 	//list
 		public List<BoardDTO> list(Pager pager)throws Exception;

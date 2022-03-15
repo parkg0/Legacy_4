@@ -20,6 +20,19 @@ public class FileManager {
 	@Autowired
 	private ServletContext servletContext;
 	
+	public boolean remove(String path,String fileName)throws Exception{
+		//file을 HDD에서 삭제 
+		//필요한 정보 : 저장된 파일명, 저장된 폴더명 
+		
+		//1. 실제경로 받아오기 
+		path = servletContext.getRealPath(path);
+		//2.파일의정보를 담고있는 클래스 준비 
+		File file = new File(path, fileName);
+		//3.삭제 
+		return file.delete(); // t/f return
+		
+	}
+	
 	public String save(MultipartFile multipartFile,String path)throws Exception{
 		//파일저장은 tomcat이 아니라 OS에서 저장 
 		//path=/resources/upload/member/
@@ -35,6 +48,7 @@ public class FileManager {
 		//이거 폴더입니까? 맞으면 true
 		
 		//만약 폴더가 없으면 에러가 발생하기 때문에 폴더를 생성 
+		//지금(개발단계)은 임시폴더에만들어짐 
 		if(!file.exists()) {
 			//file2.mkdir(); //중간폴더가 없으면 에러 
 			file.mkdirs(); //중간폴더가 없으면 중간폴더도 생성 

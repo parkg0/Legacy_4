@@ -1,4 +1,4 @@
-package com.google.s1.board.notice;
+ package com.google.s1.board.notice;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.s1.board.BoardDTO;
+import com.google.s1.board.BoardFileDTO;
 import com.google.s1.board.BoardService;
 import com.google.s1.util.FileManager;
 import com.google.s1.util.Pager;
@@ -19,7 +20,10 @@ public class NoticeService implements BoardService{
 	@Autowired
 	private FileManager fileManager;
 	
-
+	@Override
+	public BoardFileDTO detailFile(BoardFileDTO boardFileDTO)throws Exception{
+		return noticeDAO.detailFile(boardFileDTO);
+	}
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
@@ -67,12 +71,35 @@ public class NoticeService implements BoardService{
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
+		//realpath에 있는 파일 삭제 위해  
+		//num 으로 HDD에 저장도니 파일명 조회해야함 
+		
 		return noticeDAO.update(boardDTO);
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.delete(boardDTO);
+		List<NoticeFileDTO> ar = noticeDAO.listFIle(boardDTO);
+		//ar에 파일명 들어있음 
+		
+		int result= noticeDAO.delete(boardDTO);
+		
+		//db에서 삭제 성공했으면 OS도움받아 삭제 
+		if(result > 0) {
+//			for(int i=0;i<ar.size();i++){
+//			ar.get(i);
+//			} ==
+			//for(Collection에서꺼낼타입명 변수명:collection의 변수명){}
+			for(NoticeFileDTO dto:ar) {
+			boolean check=fileManager.remove("resources/upload/notice", dto.getFileName());
+			if(check) {
+				//삭제됐으면 실행할 코드 
+			}else {
+				//삭제안됐으면 실행할 코드 
+			}
+			}
+		}
+		
+		return result;
 	}
 }

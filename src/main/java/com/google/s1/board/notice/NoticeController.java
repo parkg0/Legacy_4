@@ -12,8 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.s1.board.BoardDTO;
+import com.google.s1.board.BoardFileDTO;
 import com.google.s1.board.BoardService;
 import com.google.s1.board.qna.QnaDTO;
+import com.google.s1.member.MemberFileDTO;
+import com.google.s1.member.MemberService;
 import com.google.s1.util.Pager;
 
 @Controller
@@ -26,6 +29,15 @@ public class NoticeController {
 	@ModelAttribute("board")
 	public String board() {
 		return "notice";
+	}
+	//filedown
+	@RequestMapping(value = "fileDown",method = RequestMethod.GET)
+	public ModelAndView fileDown(NoticeFileDTO noticeFileDTO)throws Exception{
+		ModelAndView mv =new ModelAndView();
+		mv.setViewName("fileDown");
+		noticeFileDTO=(NoticeFileDTO) noticeService.detailFile(noticeFileDTO);
+		mv.addObject("file",noticeFileDTO);
+		return mv;
 	}
 	
 	//update

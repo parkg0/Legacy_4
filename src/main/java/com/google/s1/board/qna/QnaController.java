@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.s1.board.BoardDTO;
 import com.google.s1.board.notice.NoticeDTO;
+import com.google.s1.board.notice.NoticeFileDTO;
 import com.google.s1.util.Pager;
 
 @Controller
@@ -26,6 +27,15 @@ public class QnaController {
 	@ModelAttribute("board")
 	public String board() {
 		return "qna";
+	}
+	//filedown
+	@RequestMapping(value = "fileDown",method = RequestMethod.GET)
+	public ModelAndView fileDown(QnaFileDTO qnaFileDTO)throws Exception{
+		ModelAndView mv =new ModelAndView();
+		mv.setViewName("fileDown");
+		qnaFileDTO=(QnaFileDTO) qnaService.detailFile(qnaFileDTO);
+		mv.addObject("file",qnaFileDTO);
+		return mv;
 	}
 	
 	//reply form으로 이동 
