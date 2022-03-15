@@ -8,9 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -19,6 +22,24 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "member";
+	}
+	
+	//filedown
+	@RequestMapping(value="photoDown",method = RequestMethod.GET)
+	public ModelAndView fileDown(MemberFileDTO memberFileDTO) throws Exception{ 
+		//매개변수 memberFileDTO :fileNum 담겨있음 
+		//이걸로 filename가져와야됨 
+		ModelAndView mv= new ModelAndView();
+		mv.setViewName("fileDown");
+		//filedownload를 실행하는 클래스 -> util/FileDown.java의 FileDown 클래스의 bean name = fileDown
+		memberFileDTO=memberService.detailFile(memberFileDTO);
+		mv.addObject("file", memberFileDTO);
+		return mv;
+	}
 
 	//mypage
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
@@ -95,8 +116,12 @@ public class MemberController {
 
 	// insert
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(MemberDTO memberDTO) throws Exception {
-		int result = memberService.join(memberDTO);
+	public String join(MemberDTO memberDTO,MultipartFile photo) throws Exception {
+		System.out.println(photo.getOriginalFilename());
+		System.out.println(photo.getSize()); //byte 
+		
+		
+		int result = memberService.join(memberDTO,photo);
 		return "redirect:../";
 	}
 

@@ -10,8 +10,7 @@
 	<h1>Join page</h1>
 	
 		<div>
-		<form class="frm" ,action="./join" , method="post" id="frm">
-		
+		<form action="./join"  method="post" id="frm" enctype="multipart/form-data">
 			<fieldset>
 				<legend>아이디</legend>
 				<input type="text" name="id" id="id1">
@@ -47,11 +46,17 @@
 			</fieldset>
 
 			<fieldset>
-				<button type="button" id="btn">JOIN</button>
+				<legend>Photo</legend>
+				<input type="file" name="photo" id="photo">
 			</fieldset>
-			
-			<script src="../resources/js/join2.js"></script>
+
+			<fieldset>
+			<button type="submit" id="btn">JOIN</button> 
+			<!-- 최종완성시 주석해제, 스크립트도 주석해제하기  -->
+				<!-- <button type="button" id="btn">JOIN</button> -->
+			</fieldset>
 	</form>
 	</div>
+			<!-- <script type="text/javascript" src="../resources/js/join2.js"></script> -->
 </body>
 </html>

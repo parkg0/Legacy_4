@@ -6,10 +6,19 @@
 
 <mapper namespace="com.google.s1.board.qna.QnaDAO">
 
+	<select id="listFile" parameterType="BoardDTO" resultType="QnaFileDTO">
+	select * from qnafile
+	where num =#{num}
+	</select>
+
+<select id="detailFile" parameterType="QnaFileDTO" resultType="QnaFileDTO">
+		select * from qnafile 
+		where filenum=#{fileNum}
+	</select>
+
 	<insert id="reply" parameterType="QnaDTO">
 	insert into qna
 	values(qna_SEQ.nextval,#{title},#{contents},#{writer},sysdate,0,#{ref},#{step},#{depth})
-	
 	</insert>
 
 	<!-- step 설정-->
@@ -43,6 +52,7 @@
 		WHERE R between #{startRow} and #{lastRow}
 	</select>
 	
+	
 	<!-- total -->
 	<select id="total" resultType="Long" parameterType="Pager">
  		SELECT COUNT(NUM) FROM QNA
@@ -67,18 +77,53 @@
 <update id="update" parameterType="QnaDTO">
 	update qna set title=#{title}, contents=#{contents}, writer=#{writer} where num=#{num}
 </update>
-
-	<!-- detail -->
-	<select id="detail"
-		parameterType="QnaDTO"
-		resultType="QnaDTO">
-		select * from qna where num=#{num}
+<!--detail -->
+	<select id="detail" parameterType="QnaDTO" resultMap="detailResult">
+		SELECT Q.*, QF.*
+		FROM 
+			QNA Q
+				LEFT OUTER JOIN
+			QNAFILE QF
+			ON Q.NUM=QF.NUM 
+		WHERE Q.NUM = #{num}
+		
 	</select>
-
-	<!-- add -->
+	
+		<resultMap type="QnaDTO" id="detailResult">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
+		<result column="writer" property="writer"/>
+		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="hit" property="hit"/>
+		<result column="hit" property="hit"/>
+ 		<result column="ref" property="ref"/>
+ 		<result column="step" property="step"/>
+ 		<result column="depth" property="depth"/>
+		<collection property="fileDTOs" javaType="List" ofType="NoticeFileDTO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</collection>
+	</resultMap>
+	
+		<select id="seqNum" resultType="Long">
+		SELECT QNA_SEQ.NEXTVAL FROM DUAL
+	</select>
+	
+		<insert id="addFile" parameterType="QnaFileDTO">
+		insert into qnafile(filenum, num, filename, oriname)
+		values (QNA_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+	</insert>
+	
+	<!-- add원본 -->
+<!-- add원본 -->
 	<insert id="add" parameterType="QnaDTO">
-		insert into qna
-		values(qna_SEQ.nextval,#{title},#{contents},#{writer},sysdate,0,qna_seq.currval,0,0)
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+		SELECT QNA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		insert into qna(num, writer, title, contents, regDate, hit, ref, step, depth)
+		values(#{num}, #{writer}, #{title},#{contents}, sysdate, 0, #{num},0,0)
 	</insert>
 	
 	<!-- delete -->

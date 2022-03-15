@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.google.s1.board.BoardDAO;
 import com.google.s1.board.BoardDTO;
+import com.google.s1.board.BoardFileDTO;
 import com.google.s1.util.Pager;
 
 @Repository
@@ -18,6 +19,10 @@ public class QnaDAO implements BoardDAO{
 	private final String NAMESPACE="com.google.s1.board.qna.QnaDAO.";
 
 	
+	public List<QnaFileDTO> listFile(BoardDTO boardDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"listFile",boardDTO);
+	}
+	
 	public int reply(QnaDTO qnaDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"reply",qnaDTO);
 	}
@@ -26,7 +31,19 @@ public class QnaDAO implements BoardDAO{
 		return sqlSession.update(NAMESPACE+"stepUpdate",qnaDTO);
 	}
 	
+	@Override
+	public BoardFileDTO detailFile(BoardFileDTO boardfileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"detailFile",boardfileDTO);
+	}
 	
+	//addfile
+	@Override
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"addFile",boardFileDTO);
+	}
+
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -62,6 +79,7 @@ public class QnaDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"total",pager);
 	}
+
 
 	
 	

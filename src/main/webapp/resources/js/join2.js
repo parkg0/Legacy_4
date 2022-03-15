@@ -2,7 +2,7 @@
 // ID, PW, NAME, EMAIL, PHONE
 
 
-const idx = document.getElementById('idx');
+const id1 = document.getElementById('id1');
 const idResult = document.getElementById('idResult');
 const pw = document.getElementById('pw');
 const pwResult = document.getElementById('pwResult');
@@ -52,8 +52,8 @@ pw.addEventListener('blur', function(){
 
 
 //---- ID 입력 후 ---------------------------------
-idx.addEventListener('blur', function(){
-    if(idx.value==''){
+id1.addEventListener('blur',function(){
+    if(id1.value==''){
         idResult.innerHTML='ID를 입력하세요';
         
     }
@@ -62,7 +62,7 @@ idx.addEventListener('blur', function(){
 //----- 가입 버튼 ----------------------------------
 btn.addEventListener("click", function(){
 
-    if(idx.value==''){
+    if(id1.value==''){
         alert('ID를 입력하세요');
         idx.focus();
         return;
@@ -198,6 +198,6 @@ btn.addEventListener("click", function(){
 
 //     //내려왔다는건 전부 추가가 됐다는 말
 //     frm.submit();
-// })
+// });
 
 

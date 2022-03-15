@@ -6,10 +6,41 @@
     
 <mapper namespace="com.google.s1.member.MemberDAO">
 
-	<!-- mypage -->
-	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
-		select id,name,email,phone from member where id=#{id}
+	<!-- filedownload시 client가 저장한 이름으로 file다운로드 하기위해 -->
+	<!-- filenum으로 filename 가져오는 쿼리  -->
+	<select id="detailFile" parameterType="MemberFileDTO" resultType="MemberFileDTO">
+		select * from memberfile 
+		where filenum=#{fileNum}
 	</select>
+	
+	<insert id="addFile" parameterType="MemberFileDTO">
+		insert into memberfile (filenum,id,filename,oriname)
+		values (file_seq.nextval,#{id},#{fileName},#{oriName})
+	</insert>
+
+	
+	<!-- mypage -->
+	<select id="mypage" parameterType="MemberDTO" resultMap="mypageResult">
+		select id,M.name,M.email,M.phone,MF.filenum,MF.filename,MF.oriname
+		from member M
+		left join memberfile MF
+		using(id)
+		where id=#{id}
+		
+	</select>
+	
+	<resultMap type="MemberDTO" id="mypageResult">
+		<id column="id" property="id"/> <!-- pk -->
+		<result column="name" property="name" /><!-- pk를 제외한 나머지 -->
+		<result column="email" property="email"/> 
+		<result column="phone" property="phone"/> 
+		<association property="memberFileDTO" javaType="MemberFileDTO">
+			<id column="fileNum" property="fileNum"/> <!-- pk -->
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</association> <!-- 1:1 -->
+	
+	</resultMap>
 
 	<insert id="join" parameterType="MemberDTO">
 		INSERT into member(id,pw,name,phone,email)

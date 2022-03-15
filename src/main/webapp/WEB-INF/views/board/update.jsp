@@ -14,7 +14,7 @@
 
 		<input type="hidden" name="num" value="${dto.num}">
 		title<input type="text" name="title" value="${dto.title}">
-		writer<input type="text" name="writer" value="${dto.writer}" readonly>
+		writer<input type="text" name="writer" value="${dto.writer}" disabled>
 		contents
 		<textarea name="contents" rows="10" cols=""> ${dto.contents}</textarea>
 
