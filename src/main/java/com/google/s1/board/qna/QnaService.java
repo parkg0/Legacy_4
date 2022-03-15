@@ -2,6 +2,7 @@ package com.google.s1.board.qna;
 
 import java.util.List;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -83,16 +84,21 @@ public class QnaService implements BoardService {
 		int result =qnaDAO.add(boardDTO);
 		System.out.println(result);
 		for(int i=0;i<files.length;i++) {
+			System.out.println(files[i].isEmpty());
 			if(files[i].isEmpty()) {
+				
 				continue;
 			}
+		
 			String fileName=fileManager.save(files[i], "resources/upload/qna");
 			
 			QnaFileDTO qnaFileDTO = new QnaFileDTO();
 			qnaFileDTO.setNum(boardDTO.getNum());
 			qnaFileDTO.setFileName(fileName);
 			qnaFileDTO.setOriName(files[i].getOriginalFilename());
+			System.out.println("test");
 			result=qnaDAO.addFile(qnaFileDTO);
+			System.out.println(result); 
 		}
 		return result;
 	}
@@ -105,8 +111,15 @@ public class QnaService implements BoardService {
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return qnaDAO.delete(boardDTO);
+		List<QnaFileDTO> ar = qnaDAO.listFile(boardDTO);
+		int result=qnaDAO.delete(boardDTO);
+		if(result>0) {
+			for(QnaFileDTO dto:ar) {
+				boolean check = fileManager.remove("resources/upload/qna",dto.getFileName());
+		
+			}
+		}
+		return result;
 	}
 
 

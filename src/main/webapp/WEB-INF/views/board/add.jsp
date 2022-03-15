@@ -22,6 +22,6 @@
 		<button type="submit">add</button>
 	</form>
 
-	<script src="../resources/js/noticeAdd.js"></script>
+	<!-- <script src="../resources/js/noticeAdd.js"></script> -->
 </body>
 </html> 

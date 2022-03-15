@@ -6,6 +6,11 @@
 
 <mapper namespace="com.google.s1.board.qna.QnaDAO">
 
+	<select id="listFile" parameterType="BoardDTO" resultType="QnaFileDTO">
+	select * from qnafile
+	where num =#{num}
+	</select>
+
 <select id="detailFile" parameterType="QnaFileDTO" resultType="QnaFileDTO">
 		select * from qnafile 
 		where filenum=#{fileNum}
@@ -112,12 +117,13 @@
 	</insert>
 	
 	<!-- add원본 -->
+<!-- add원본 -->
 	<insert id="add" parameterType="QnaDTO">
 		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
 		SELECT QNA_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		insert into qna(num, writer, title, contents, regDate, hit, ref, step, depth)
-		values(#{num}, #{writer}, #{title},#{contents}, sysdate, 0, qna_seq.CURRVAL,0,0)
+		values(#{num}, #{writer}, #{title},#{contents}, sysdate, 0, #{num},0,0)
 	</insert>
 	
 	<!-- delete -->

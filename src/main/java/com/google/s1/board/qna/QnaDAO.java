@@ -19,6 +19,10 @@ public class QnaDAO implements BoardDAO{
 	private final String NAMESPACE="com.google.s1.board.qna.QnaDAO.";
 
 	
+	public List<QnaFileDTO> listFile(BoardDTO boardDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"listFile",boardDTO);
+	}
+	
 	public int reply(QnaDTO qnaDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"reply",qnaDTO);
 	}
