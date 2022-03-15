@@ -99,6 +99,7 @@ public class QnaService implements BoardService {
 			System.out.println("test");
 			result=qnaDAO.addFile(qnaFileDTO);
 			System.out.println(result); 
+			
 		}
 		return result;
 	}
