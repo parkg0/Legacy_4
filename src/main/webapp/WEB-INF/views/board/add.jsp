@@ -9,7 +9,7 @@
 <body>
 <h1>${board} ADD page</h1>
 	<form action="./add" method="post" enctype="multipart/form-data">
-		작성자 <input type="text" name="writer">	
+		작성자 <input type="text" name="writer" value="${member.id}" readonly>	
 		제목 <input type="text" name="title">
 		내용 <textarea rows="" cols="" type="text" name="contents"></textarea>
 		<div>

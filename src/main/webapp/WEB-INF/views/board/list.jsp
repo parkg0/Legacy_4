@@ -13,7 +13,9 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <h1>${board} List Page</h1>
+<c:if test="${not empty member}">
 <h4><a href="./add">글 작성</a></h4>
+</c:if> 
 		<!--검색창-->
 	<div>
 		<form action="./list" method="get">

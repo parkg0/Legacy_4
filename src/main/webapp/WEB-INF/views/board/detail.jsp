@@ -11,9 +11,10 @@
 <body>
 <h1>${board} detail page</h1>
 
-<a href="./update">수정</a>
-<a href="./delete?num=${dto.num}">삭제</a>
+<c:if test="${member.id eq dto.writer}">
+<a href="./delete?num=${dto.num}">delete</a>
 <a href="./update?num=${dto.num}">update</a>
+</c:if>
 <!-- qna에만 보이도록  -->
 <c:if test="${board ne 'notice'}">
 <a href="./reply?num=${dto.num}">Reply</a>
