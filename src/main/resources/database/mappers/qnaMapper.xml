@@ -75,7 +75,7 @@
 
 <!-- update -->
 <update id="update" parameterType="QnaDTO">
-	update qna set title=#{title}, contents=#{contents}, writer=#{writer} where num=#{num}
+	update qna set title=#{title}, contents=#{contents} where num=#{num}
 </update>
 <!--detail -->
 	<select id="detail" parameterType="QnaDTO" resultMap="detailResult">
