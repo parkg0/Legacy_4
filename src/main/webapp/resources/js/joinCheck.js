@@ -5,6 +5,7 @@
 const allck=window.document.getElementsByClassName("rule");
 const check=document.getElementsByClassName("check")
 const checkall=document.getElementById('checkAll');
+const rules=document.getElementById("rules");
 const btn = document.getElementById('btn');
 
 //----내가한거 --------------------------
@@ -39,22 +40,30 @@ for(c of check){
 // }
 
 
-//----강사님 -----
-for(ck of check){
-    ck.addEventListener("click",function(){
-        let final= true;
-
+rules.addEventListener("click",function(){
+	let final =true;
        for(c of check){
-           if(!c.checked){
+          if(!c.checked){
                final=false;
            }
        }
-
     checkall.checked=final;
+        });
 
-    });
-   
-}
+
+//----강사님 -----
+//for(ck of check){
+//    ck.addEventListener("click",function(){
+//        let final= true;
+
+//       for(c of check){
+//          if(!c.checked){
+//               final=false;
+//           }
+//       }
+//    checkall.checked=final;
+//    }) 
+//};
 //-----------숙제------------------------
 btn.addEventListener("click",function(){
     if(checkall.checked){
